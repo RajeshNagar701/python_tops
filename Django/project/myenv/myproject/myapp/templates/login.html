@@ -1,0 +1,46 @@
+{% extends "layout2.html" %}
+
+{% load static %}
+{% block content  %}
+
+  <!-- book section -->
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Signup Here
+        </h2>
+      </div>
+      
+      {% if msg %}
+      <div class="alert alert-danger" role="alert">
+        {{msg}}
+     </div>
+     {% endif %}
+      <div class="row">
+        <div class="offset-md-3 col-md-6">
+          <div class="form_container">
+            <form method="post" action="{% url 'login' %}">
+              {% csrf_token %}
+              <div>
+                <input type="email" name="email" class="form-control" placeholder="Your Email" />
+              </div>
+              <div>
+                <input type="password" name="password" class="form-control" placeholder="Your Password" />
+              </div>
+              <div class="btn_box">
+                <button>
+                  Book Now
+                </button>
+              </div>
+              <br>
+              <a  href="{% url 'signup' %}">If you Not Register then Signup Here</a>
+            </form>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </section>
+  <!-- end book section -->
+{% endblock  %}

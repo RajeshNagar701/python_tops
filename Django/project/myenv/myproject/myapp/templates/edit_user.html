@@ -1,0 +1,65 @@
+{% extends "layout2.html" %}
+
+{% load static %}
+{% block content  %}
+
+  <!-- book section -->
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="">
+        <h2 align="center">
+          Edit User Here
+        </h2>
+      </div>
+      {% if msg %}
+      <div class="alert alert-danger" role="alert">
+        {{msg}}
+     </div>
+     {% endif %}
+      <div class="row">
+        <div class="offset-md-3 col-md-6">
+          <div class="form_container">
+            <form method="post" action="{% url 'edituser' single_user.id %}">
+              {% csrf_token %}
+              <div>
+                <input type="text" name="name" value="{{single_user.name}}" class="form-control" placeholder="Your Name" />
+              </div>
+              <div>
+                <input type="email" name="email" value="{{single_user.email}}" class="form-control" placeholder="Your Email" />
+              </div>
+              <div>
+                <input type="password" name="password" value="{{single_user.password}}" class="form-control" placeholder="Your Password" />
+              </div>
+            
+              <div>
+                Gender: 
+                Male: <input type="radio" name="gender" value="Male" 
+                {% if single_user.gender == "Male" %}checked{% endif %} />
+                Female: <input type="radio" name="gender" value="Female"
+                {% if single_user.gender == "Female" %}checked{% endif %} />
+              </div>
+              <br>
+              <div>
+                Hobby: 
+                Sports: <input type="checkbox" name="hobby" value="Sports" {% if "Sports" in hobby %}checked{% endif %} />
+                Singing: <input type="checkbox" name="hobby" value="Singing"  {% if "Singing" in hobby %}checked{% endif %}/>
+                Dance: <input type="checkbox" name="hobby"  value="Dance" {% if "Dance" in hobby %}checked{% endif %}/>
+              </div>
+              <br>
+              <div>
+                <input type="number" name="mobile" value="{{single_user.mobile}}" class="form-control" placeholder="Phone Number" />
+              </div>
+              <div class="btn_box">
+                <button>
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </section>
+  <!-- end book section -->
+{% endblock  %}

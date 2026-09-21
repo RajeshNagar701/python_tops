@@ -1,0 +1,65 @@
+{% extends "layout2.html" %}
+
+{% load static %}
+{% block content  %}
+
+  <!-- book section -->
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Signup Here
+        </h2>
+      </div>
+      {% if msg %}
+      <div class="alert alert-danger" role="alert">
+        {{msg}}
+     </div>
+     {% endif %}
+      <div class="row">
+        <div class="offset-md-3 col-md-6">
+          <div class="form_container">
+            <form method="post" action="{% url 'signup' %}">
+              {% csrf_token %}
+              <div>
+                <input type="text" name="name" class="form-control" placeholder="Your Name" />
+              </div>
+              <div>
+                <input type="email" name="email" class="form-control" placeholder="Your Email" />
+              </div>
+              <div>
+                <input type="password" name="password" class="form-control" placeholder="Your Password" />
+              </div>
+            
+              <div>
+                Gender: 
+                Male: <input type="radio" name="gender" value="Male" />
+                Female: <input type="radio" name="gender" value="Female" />
+              </div>
+              <br>
+              <div>
+                Hobby: 
+                Sports: <input type="checkbox" name="hobby" value="Sports" />
+                Singing: <input type="checkbox" name="hobby" value="Singing" />
+                Dance: <input type="checkbox" name="hobby" value="Dance" />
+              </div>
+              <br>
+              <div>
+                <input type="number" name="mobile" class="form-control" placeholder="Phone Number" />
+              </div>
+              <div class="btn_box">
+                <button>
+                  Book Now
+                </button>
+                <br>
+                <a  href="{% url 'login' %}">If you already Register then Login Here</a>
+              </div>
+            </form>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </section>
+  <!-- end book section -->
+{% endblock  %}
